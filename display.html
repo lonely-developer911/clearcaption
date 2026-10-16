@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <title>ClearCaption — Projector Display</title>
+  <link rel="stylesheet" href="display.css">
+</head>
+<body>
+  <main id="projector" class="projector">
+    <header class="projector-header">
+      <span class="projector-brand">ClearCaption</span>
+      <span id="projectorStatus" class="projector-status">Waiting for captions…</span>
+    </header>
+    <section id="captionLines" class="caption-lines" aria-live="polite">
+      <p class="projector-empty">Captions will appear here when the operator starts speaking.</p>
+    </section>
+    <footer class="projector-footer"><span>Live captions</span><span id="projectorHint">Keep this window on the projector screen</span></footer>
+    <button id="projectorFullscreen" class="fullscreen-button" type="button">Enter full screen</button>
+  </main>
+  <script src="display.js"></script>
+</body>
+</html>

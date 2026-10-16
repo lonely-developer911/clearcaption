@@ -1,0 +1,15 @@
+*{box-sizing:border-box}
+:root{color-scheme:dark;font-family:Arial,Helvetica,sans-serif;background:#000;color:#fff}
+html,body{margin:0;width:100%;height:100%;background:#000}
+body{overflow:hidden}
+.projector{height:100vh;width:100vw;background:#000;color:#fff;display:flex;flex-direction:column;padding:3.5vh 5vw 2.5vh;position:relative}
+.projector-header,.projector-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;color:#bdbdbd;font-size:clamp(12px,1.4vw,20px)}
+.projector-brand{font-weight:700;letter-spacing:.04em;color:#fff}.projector-status{font-size:.8em}
+.caption-lines{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:.55em;overflow:hidden;padding:4vh 0 3vh}
+.caption-line{font-size:var(--caption-size,42px);line-height:1.28;font-weight:600;letter-spacing:.005em;overflow-wrap:anywhere;white-space:pre-wrap}
+.caption-line.old{color:#c9c9c9}.caption-line.latest{color:#fff}.caption-line.interim{color:#b8d2ff;font-style:italic}
+.projector-empty{margin:auto;text-align:center;color:#a9a9a9;font-size:clamp(20px,3vw,44px);line-height:1.4;max-width:900px}
+.projector-footer{border-top:1px solid #333;padding-top:1.4vh;font-size:clamp(11px,1vw,15px)}
+.fullscreen-button{position:absolute;right:16px;top:16px;background:#202020;color:#fff;border:1px solid #555;border-radius:7px;padding:8px 11px;font-size:12px;opacity:.8}
+.fullscreen-button:hover{opacity:1}
+@media print{.fullscreen-button{display:none}}

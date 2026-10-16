@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101827">
-  <title>ClearCaption — Live Speech to Text</title>
+  <title>ClearCaption V2 — Live Speech to Text</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -12,7 +12,7 @@
     <header class="topbar">
       <a class="brand" href="#" aria-label="ClearCaption home">
         <span class="brand-mark" aria-hidden="true">CC</span>
-        <span><strong>ClearCaption</strong><small>Live speech-to-text</small></span>
+        <span><strong>ClearCaption</strong><small>Live speech-to-text • V2</small></span>
       </a>
       <div class="live-indicator" id="liveIndicator"><span class="status-dot"></span><span id="statusText">Ready to start</span></div>
     </header>
@@ -20,14 +20,16 @@
     <section class="intro">
       <p class="eyebrow">ACCESSIBILITY • LIVE CAPTIONS</p>
       <h1>Every word, <span>in view.</span></h1>
-      <p class="intro-copy">Turn spoken words into readable captions in real time. For lectures, meetings, services, and everyday conversations.</p>
+      <p class="intro-copy">Transcribe live speech or an audio recording, then show readable captions on a separate projector screen.</p>
     </section>
 
     <section class="control-panel" aria-label="Caption controls">
+      <div class="section-heading"><div><h2>Live microphone</h2><p>Use a supported browser and allow microphone access.</p></div></div>
       <div class="primary-controls">
-        <button class="button button-primary" id="startBtn"><span aria-hidden="true">●</span> Start captions</button>
-        <button class="button button-secondary" id="stopBtn" disabled>Stop</button>
+        <button class="button button-primary" id="startBtn">● Start captions</button>
+        <button class="button button-secondary" id="stopBtn" disabled>Stop listening</button>
         <button class="button button-quiet" id="clearBtn">Clear text</button>
+        <button class="button button-projector" id="projectorBtn">▣ Open projector display</button>
       </div>
       <div class="settings-row">
         <label class="setting">
@@ -42,43 +44,47 @@
           </select>
         </label>
         <label class="setting text-size-setting">
-          <span>Text size <strong id="fontSizeLabel">32 px</strong></span>
-          <input id="fontSizeRange" type="range" min="22" max="48" value="32" step="2">
-        </label>
-        <label class="setting">
-          <span>Caption contrast</span>
-          <select id="themeSelect">
-            <option value="dark">Dark background</option>
-            <option value="light">Light background</option>
-            <option value="yellow">High contrast</option>
-          </select>
+          <span>Projector text size <strong id="fontSizeLabel">42 px</strong></span>
+          <input id="fontSizeRange" type="range" min="28" max="72" value="42" step="2">
         </label>
       </div>
     </section>
 
+    <section class="control-panel audio-panel" aria-label="Recorded audio transcription">
+      <div class="section-heading"><div><h2>Transcribe an audio recording</h2><p>Choose an audio file. Transcription runs in your browser using a downloadable AI model.</p></div></div>
+      <div class="upload-row">
+        <label class="file-picker" for="audioFile">Choose audio file</label>
+        <input id="audioFile" type="file" accept="audio/*,.wav,.mp3,.m4a,.ogg,.webm,.flac">
+        <span id="fileName" class="file-name">No file selected</span>
+        <button class="button button-primary" id="transcribeBtn" disabled>Transcribe recording</button>
+      </div>
+      <div class="progress-track" id="progressTrack" hidden><div id="progressBar"></div></div>
+      <p class="small-note" id="audioStatus" role="status">First use requires an internet connection to download the speech model. The model may take time to load.</p>
+    </section>
+
     <section class="caption-card" id="captionCard" aria-label="Live captions">
       <div class="caption-card-header">
-        <div class="caption-heading"><span class="caption-icon" aria-hidden="true">Aa</span><div><h2>Live captions</h2><p id="captionSubhead">Your transcript will appear here</p></div></div>
-        <button class="icon-button" id="fullscreenBtn" title="Toggle full screen" aria-label="Toggle full screen">⛶ <span>Full screen</span></button>
+        <div class="caption-heading"><span class="caption-icon" aria-hidden="true">Aa</span><div><h2>Transcript</h2><p id="captionSubhead">Your words will appear here</p></div></div>
+        <button class="button button-secondary" id="fullscreenBtn" title="Toggle full screen">⛶ Full screen</button>
       </div>
       <div class="caption-output" id="captionOutput" aria-live="polite" aria-atomic="false">
-        <p class="empty-state" id="emptyState"><span class="empty-mic" aria-hidden="true">🎙</span><strong>Ready when you are</strong><span>Press “Start captions” and allow microphone access. Spoken words will appear here.</span></p>
+        <p class="empty-state" id="emptyState"><span class="empty-mic" aria-hidden="true">🎙</span><strong>Ready when you are</strong><span>Start captions or choose an audio recording to begin.</span></p>
         <div id="finalTranscript" class="final-transcript"></div>
         <span id="interimTranscript" class="interim-transcript"></span>
       </div>
       <div class="caption-footer">
         <span id="wordCount">0 words</span>
-        <span id="listeningHint">Captions are generated by your browser's speech recognition.</span>
+        <span id="listeningHint">Projector captions use white text on black.</span>
       </div>
     </section>
 
     <section class="bottom-actions">
-      <div><strong>Need a copy?</strong><p>Save the current transcript as a plain text file.</p></div>
+      <div><strong>Keep a copy</strong><p>Download the final transcript as a plain text file.</p></div>
       <button class="button button-secondary" id="downloadBtn" disabled>↓ Download transcript</button>
     </section>
 
     <aside class="notice" id="notice" role="status" hidden></aside>
-    <footer class="footer"><span>Speech recognition may make mistakes. Check important information.</span></footer>
+    <footer class="footer"><span>ClearCaption V2</span><span>Automatic captions can make mistakes. Check important information.</span></footer>
   </main>
   <script src="app.js"></script>
 </body>
